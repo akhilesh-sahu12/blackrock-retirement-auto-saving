@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Transaction {
 
-    private String date;        
-    private double amount;      
-    private double ceiling;     
-    private double remanent;    
+	private String date;
+	private Double amount;
+	private Double ceiling;
+	private Double remanent;
 }

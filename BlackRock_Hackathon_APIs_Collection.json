@@ -1,0 +1,145 @@
+{
+  "info": {
+    "name": "BlackRock Hackathon APIs",
+    "_postman_id": "blackrock-hackathon-collection",
+    "description": "BlackRock Retirement Auto Saving API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+
+    {
+      "name": "1️ Parse Transactions",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  {\n    \"date\": \"2025-01-01 10:00:00\",\n    \"amount\": 250\n  },\n  {\n    \"date\": \"2025-02-01 12:00:00\",\n    \"amount\": 420\n  }\n]"
+        },
+        "url": {
+          "raw": "http://localhost:8080/blackrock/challenge/v1/transactions:parse",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["blackrock", "challenge", "v1", "transactions:parse"]
+        }
+      }
+    },
+
+    {
+      "name": "2️ Validate Transactions",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"wage\": 1000000,\n  \"transactions\": [\n    {\n      \"date\": \"2025-01-01 10:00:00\",\n      \"amount\": 250,\n      \"ceiling\": 300,\n      \"remanent\": 50\n    },\n    {\n      \"date\": \"2025-01-01 10:00:00\",\n      \"amount\": -100,\n      \"ceiling\": 0,\n      \"remanent\": 0\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/blackrock/challenge/v1/transactions:validator",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["blackrock", "challenge", "v1", "transactions:validator"]
+        }
+      }
+    },
+
+    {
+      "name": "3️ Apply Temporal Rules",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"transactions\": [\n    {\n      \"date\": \"2025-01-01 10:00:00\",\n      \"amount\": 250,\n      \"ceiling\": 300,\n      \"remanent\": 50\n    }\n  ],\n  \"q\": [\n    {\n      \"fixed\": 100,\n      \"start\": \"2025-01-01T00:00:00\",\n      \"end\": \"2025-01-31T23:59:59\"\n    }\n  ],\n  \"p\": [\n    {\n      \"extra\": 20,\n      \"start\": \"2025-01-01T00:00:00\",\n      \"end\": \"2025-12-31T23:59:59\"\n    }\n  ],\n  \"k\": [\n    {\n      \"start\": \"2025-01-01T00:00:00\",\n      \"end\": \"2025-12-31T23:59:59\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/blackrock/challenge/v1/transactions:filter",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["blackrock", "challenge", "v1", "transactions:filter"]
+        }
+      }
+    },
+
+    {
+      "name": "4️ NPS Returns",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"age\": 30,\n  \"wage\": 1000000,\n  \"inflation\": 5,\n  \"transactions\": [\n    {\n      \"date\": \"2025-01-01 10:00:00\",\n      \"amount\": 250,\n      \"ceiling\": 300,\n      \"remanent\": 50\n    }\n  ],\n  \"q\": [],\n  \"p\": [],\n  \"k\": [\n    {\n      \"start\": \"2025-01-01T00:00:00\",\n      \"end\": \"2025-12-31T23:59:59\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/blackrock/challenge/v1/returns:nps",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["blackrock", "challenge", "v1", "returns:nps"]
+        }
+      }
+    },
+
+    {
+      "name": "5️ Index Returns",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"age\": 30,\n  \"inflation\": 5,\n  \"transactions\": [\n    {\n      \"date\": \"2025-01-01 10:00:00\",\n      \"amount\": 250,\n      \"ceiling\": 300,\n      \"remanent\": 50\n    }\n  ],\n  \"q\": [],\n  \"p\": [],\n  \"k\": [\n    {\n      \"start\": \"2025-01-01T00:00:00\",\n      \"end\": \"2025-12-31T23:59:59\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/blackrock/challenge/v1/returns:index",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["blackrock", "challenge", "v1", "returns:index"]
+        }
+      }
+    },
+
+    {
+      "name": "6️ Performance",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/blackrock/challenge/v1/performance",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["blackrock", "challenge", "v1", "performance"]
+        }
+      }
+    }
+
+  ]
+}

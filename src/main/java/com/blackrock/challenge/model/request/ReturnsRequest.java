@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ReturnsRequest {
 
-    private int age;
-    private double wage;
-    private double inflation;
+	private Integer age;
+	private Double wage;
+	private Double inflation;
 
     private List<PeriodQ> q;
     private List<PeriodP> p;

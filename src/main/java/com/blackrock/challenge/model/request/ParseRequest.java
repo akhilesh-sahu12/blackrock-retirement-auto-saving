@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class ParseRequest {
 
     private String date;
-    private double amount;
+	private double amount;
 }

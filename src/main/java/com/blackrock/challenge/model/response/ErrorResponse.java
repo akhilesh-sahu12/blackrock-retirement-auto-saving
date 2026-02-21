@@ -1,6 +1,6 @@
 package com.blackrock.challenge.model.response;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,13 +8,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class ReturnsResponse {
+public class ErrorResponse {
 
-	private Double totalTransactionAmount;
-	private Double totalCeiling;
-    private List<KPeriodResult> savingsByDates;
-
+    private String message;
+    private String errorCode;
+    private LocalDateTime timestamp;
 }
